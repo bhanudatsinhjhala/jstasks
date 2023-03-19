@@ -1,8 +1,12 @@
+/* reset borad */
+
 function resetBoard() {
   modifyCellsAttribute(false, "");
   emptyBoard();
   displayPlayersTurn(0);
 }
+
+/* new game */
 
 function newGame() {
   playersForm.style.display = "block";
@@ -11,6 +15,9 @@ function newGame() {
   modifyCellsAttribute(false, "");
   resetPlayersName();
 }
+
+/* diable cells and empty cell value */
+
 function modifyCellsAttribute(disabled, value = null) {
   cells = [...cells];
   cells.forEach((cell) => {

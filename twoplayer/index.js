@@ -18,6 +18,8 @@ let cells = document.querySelectorAll(".cells");
 
 let playerTurnValue = "x";
 
+/* empty board */
+
 emptyBoard();
 function emptyBoard() {
   board = [
@@ -27,10 +29,14 @@ function emptyBoard() {
   ];
 }
 
+/* reset players name */
+
 function resetPlayersName() {
   player1.value = "";
   player2.value = "";
 }
+
+/* get players name */
 
 function getPlayersName() {
   if (!player1.value || !player2.value) {
@@ -49,6 +55,8 @@ function getPlayersName() {
   boardForm.style.display = "block";
   displayPlayersTurn(0);
 }
+
+/* get input from players */
 
 function btnClick(indexVal) {
   const rowIndex = indexVal.split("")[0];
@@ -71,9 +79,13 @@ function btnClick(indexVal) {
   displayPlayersTurn(index);
 }
 
+/* display players turn */
+
 function displayPlayersTurn(index) {
   heading.innerText = `${players[index].name} place your ${players[index].value}`;
 }
+
+/* check is player won */
 
 function checkWinner(rowIndex, columnIndex) {
   let emptyCells;
@@ -97,6 +109,8 @@ function checkWinner(rowIndex, columnIndex) {
   else if (emptyCells == 0) return "tie";
   return null;
 }
+
+/* show which player won */
 
 function declareWin(playerTurnValue) {
   const index = playerTurnValue == "x" ? 0 : 1;
