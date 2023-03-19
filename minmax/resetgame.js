@@ -1,5 +1,7 @@
 /* Reset or Start New Game Code */
 
+/* cell disable and value emty */
+
 function modifyCellsAttribute(disabled, value = null) {
   cells = [...cells];
   cells.forEach((cell) => {
@@ -9,12 +11,16 @@ function modifyCellsAttribute(disabled, value = null) {
   });
 }
 
+/* reset board */
+
 function resetBoard() {
   modifyCellsAttribute(false, "");
   emptyBoard();
   displayPlayersTurn(0);
   playerTurnValue = "x";
 }
+
+/* new game */
 
 function newGame() {
   playersForm.style.display = "block";

@@ -4,6 +4,8 @@ const points = {
   tie: 0,
 };
 
+/* minmax algorithm for tic tac toe */
+
 function minMax(newBoard, isMaximizing, rowIndex, columnIndex) {
   const result = checkWinner(newBoard, rowIndex, columnIndex);
   if (result !== null) {
