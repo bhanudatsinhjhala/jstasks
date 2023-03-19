@@ -4,17 +4,20 @@ let priceInput = document.querySelector(".price-input");
 let showGroupTable = document.querySelector(".group-table");
 let tableBody = document.querySelector(".table-body");
 let searchBox = document.querySelector(".search-input");
-
 let sortingArrowId = document.querySelector(".arrows-id");
 let sortingArrowCategory = document.querySelector(".arrows-category");
 let sortingArrowProduct = document.querySelector(".arrows-product");
 let sortingArrowPrice = document.querySelector(".arrows-price");
+const invalidInput = ["e", "E", "+", "-"];
+
+searchBox.addEventListener("change", searchData);
 
 if (sessionStorage.getItem("records") === null) {
   sessionStorage.setItem("records", JSON.stringify([]));
 }
+
 showRecord();
-const invalidInput = ["e", "E", "+", "-"];
+/* Price input field validation */
 
 priceInput.addEventListener("keydown", (event) => {
   if (invalidInput.includes(event.key)) {
@@ -22,10 +25,14 @@ priceInput.addEventListener("keydown", (event) => {
     alert("Please enter only Numbers");
   }
 });
+
+/* get records from session storage */
+
 function getRecords() {
   return JSON.parse(sessionStorage.getItem("records"));
 }
-searchBox.addEventListener("change", searchData);
+
+/* form data submission */
 
 function onDataInput(e) {
   e.preventDefault();
@@ -44,6 +51,8 @@ function onDataInput(e) {
   priceInput.value = "";
 }
 
+/* create record from data recieved from form */
+
 function createRecord(product, price, category) {
   let records = getRecords();
   console.log(records);
@@ -61,6 +70,8 @@ function createRecord(product, price, category) {
   });
   sessionStorage.setItem("records", JSON.stringify(records));
 }
+
+/* Show the record in table */
 
 function showRecord(records = getRecords()) {
   tableBody.innerHTML = "";
@@ -89,6 +100,8 @@ function showRecord(records = getRecords()) {
   }
 }
 
+/* show Edit form for the created record */
+
 function showEditInput(id) {
   let editBtn = document.querySelector(`.edit-btn-${id}`);
   if (editBtn.value !== "Edit") {
@@ -107,12 +120,16 @@ function showEditInput(id) {
   price.innerHTML = `<input type="text" name="editPrice" class="edit-price-${id}" value=${records[index].price} />`;
 }
 
+/* delete the record */
+
 function deleteRecord(id) {
   let records = getRecords();
   records = records.filter((record) => record.id !== id);
   sessionStorage.setItem("records", JSON.stringify(records));
   showRecord();
 }
+
+/* update the record code */
 
 function updateRecord(id) {
   let product = document.querySelector(`.product-btn-${id}`);
@@ -134,6 +151,8 @@ function updateRecord(id) {
   category.innerHTML = records[index].category;
 }
 
+/* show group table */
+
 function showGroup() {
   showGroupTable.style.visibility = "visible";
   let groups = calcGroupPrices();
@@ -153,6 +172,8 @@ function showGroup() {
   });
 }
 
+/* calc group prices */
+
 function calcGroupPrices() {
   let records = getRecords();
   let groups = [];
@@ -168,6 +189,8 @@ function calcGroupPrices() {
   });
   return groups;
 }
+
+/* searching the table */
 
 function searchData() {
   let searchInputValue = searchBox.value;
@@ -193,6 +216,8 @@ function searchData() {
   showRecord(searchResult);
 }
 
+/* sorting the table */
+
 function sortTable(header) {
   let sortColumn = {
     id: sortingArrowId,
@@ -206,6 +231,8 @@ function sortTable(header) {
     return (sortColumn[header].value = "desc");
   sortColumn[header].value = "asc";
 }
+
+/* sorting the array */
 function sortArray(order, header) {
   let records = getRecords();
   records.sort((a, b) => {
