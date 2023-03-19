@@ -1,3 +1,5 @@
+/* when the robot's plays it's first position */
+
 function robotsFirstTurn(positionsOccupied) {
   const playerPosition = positionsOccupied[0];
   const centerPositions = ["01", "10", "12", "21"];
@@ -9,6 +11,9 @@ function robotsFirstTurn(positionsOccupied) {
   }
   return btnClick("11");
 }
+
+/* when tacking the player if it is on winning edge */
+
 function tacklePlayer1(tacklePosition, board) {
   for (let i = 0; i < 3; i++) {
     const position = tacklePosition[0][i];
@@ -19,6 +24,8 @@ function tacklePlayer1(tacklePosition, board) {
     }
   }
 }
+
+/* get robot's winning positions */
 
 function getPlayerWinningPosition(positionsOccupied, player) {
   const playerWinningPositions = winningPositions.filter((positions) => {
@@ -44,6 +51,8 @@ function getPlayerWinningPosition(positionsOccupied, player) {
   });
   return playerWinningPositions;
 }
+
+/* playing robot's random position on board */
 
 function randomPosition() {
   let rowIndex = Math.round(0 + Math.random() * (2 - 0));

@@ -29,6 +29,7 @@ let cells = document.querySelectorAll(".cells");
 
 let playerTurnValue = "x";
 
+/* empty board function */
 emptyBoard();
 function emptyBoard() {
   board = [
@@ -37,7 +38,8 @@ function emptyBoard() {
     ["-", "-", "-"],
   ];
 }
-/* User Input Form for player name and board form input Code */
+
+/* User Input Form for player name */
 
 function getPlayersName() {
   if (!player1.value) {
@@ -50,6 +52,8 @@ function getPlayersName() {
   boardForm.style.display = "block";
   displayPlayersTurn(0);
 }
+
+/* get board input Code */
 
 function btnClick(indexVal) {
   const rowIndex = indexVal.split("")[0];
@@ -74,12 +78,14 @@ function btnClick(indexVal) {
   displayPlayersTurn(nextPlayerIndex);
 }
 
+/* show which players turn it is */
+
 function displayPlayersTurn(nextPlayerIndex) {
   heading.innerText = `${players[nextPlayerIndex].name} place your ${players[nextPlayerIndex].value}`;
   if (nextPlayerIndex == 1) return robotPlay();
 }
 
-/* Checking Is Player Won and declare it Code. */
+/* Checking Is Player Won */
 
 function checkWinner(rowIndex, columnIndex) {
   let emptyCells = 0;
@@ -104,13 +110,15 @@ function checkWinner(rowIndex, columnIndex) {
   return null;
 }
 
+/* declare which player is won */
+
 function declareWin(playerTurnValue) {
   let index = players.findIndex((player) => player.value === playerTurnValue);
   heading.innerText = `Hurray ${players[index].name} wins`;
   modifyCellsAttribute(true);
 }
 
-/* Robot and User Board checking */
+/* Robot's turn and checking the cases */
 
 function robotPlay() {
   const robot = players[1];

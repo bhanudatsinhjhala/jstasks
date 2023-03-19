@@ -1,5 +1,6 @@
 /* Reset or Start New Game Code */
 
+/* Reset game */
 function resetBoard() {
   modifyCellsAttribute(false, "");
   emptyBoard();
@@ -7,6 +8,8 @@ function resetBoard() {
   playerTurnValue = "x";
   emptyPositionOccupied();
 }
+
+/* disable and empty value of cells */
 
 function modifyCellsAttribute(disabled, value = null) {
   cells = [...cells];
@@ -17,6 +20,8 @@ function modifyCellsAttribute(disabled, value = null) {
   });
 }
 
+/* new game code */
+
 function newGame() {
   playersForm.style.display = "block";
   boardForm.style.display = "none";
@@ -26,6 +31,7 @@ function newGame() {
   emptyPositionOccupied();
 }
 
+/* empty position occupied property of players */
 function emptyPositionOccupied() {
   players[0].positionsOccupied = [];
   players[1].positionsOccupied = [];
