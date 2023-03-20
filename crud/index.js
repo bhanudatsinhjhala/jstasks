@@ -39,9 +39,13 @@ function onDataInput(e) {
   let category = categoryInput.value.toLowerCase();
   let product = productInput.value.toLowerCase();
   let price = parseInt(priceInput.value);
-  console.log(price);
+  const regex = new RegExp("^[a-z]+$");
   if (!category || !product || !price) {
     alert("You can not leave any field empty or null");
+    return;
+  }
+  if (!regex.test(category)) {
+    alert("please do not enter numbers in categroy field");
     return;
   }
   createRecord(product, price, category);
